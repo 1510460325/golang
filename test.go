@@ -39,6 +39,10 @@ func main() {
 	// 数组赋值
 	bags = [15]int{15, 15}
 	fmt.Println(bags[1])
+	fmt.Println("====for循环range遍历====")
+	for _, num := range bags {
+		fmt.Println(num)
+	}
 	fmt.Println("====数组切片====")
 	fmt.Println(bags[1:4])
 	// 指针
@@ -48,6 +52,15 @@ func main() {
 	fmt.Println("====结构体====")
 	var person = Person{id: 1, name: "122"}
 	fmt.Println(person)
+	fmt.Println("====map====")
+	var myMap = make(map[string]string)
+	myMap["name"] = "abc"
+	myMap["id"] = "111"
+	fmt.Println(myMap["asd"])
+	fmt.Println("====遍历map====")
+	for in := range myMap {
+		fmt.Printf("key is %s and value is %s\n", in, myMap[in])
+	}
 }
 
 /*
