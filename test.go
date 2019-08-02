@@ -61,6 +61,11 @@ func main() {
 	for in := range myMap {
 		fmt.Printf("key is %s and value is %s\n", in, myMap[in])
 	}
+	fmt.Println("====new新建内存====")
+	var person1 = new(Person)
+	person1.id = 12
+	person1.name = "21"
+	fmt.Println(*person1)
 }
 
 /*
