@@ -7,14 +7,16 @@ type Phone interface {
 }
 
 type Nokia struct {
+	id int
 }
 
-func (nokia Nokia) call() {
+func (nokia *Nokia) func1() {
+	fmt.Println("i'm fuc1")
+}
+
+func (nokia *Nokia) call() {
+	nokia.func1()
 	fmt.Println("i'm a Nokia")
-}
-
-func (nokia Nokia) call1() {
-	fmt.Println("i'm a Nokia1")
 }
 
 func main() {
