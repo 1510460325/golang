@@ -6,6 +6,7 @@ import (
 )
 
 func println2(str string, n int) {
+	defer fmt.Println("=====thread end =====")
 	for i := 1; i < n; i++ {
 		time.Sleep(100 * time.Millisecond)
 		fmt.Println(str)
@@ -13,6 +14,6 @@ func println2(str string, n int) {
 }
 
 func main() {
-	go println2("bweqe", 10)
-	println2("aqwee", 10)
+	go println2("aaa", 10)
+	println2("bbb", 10)
 }
