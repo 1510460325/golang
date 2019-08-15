@@ -1,7 +1,9 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 	"sync"
 	"time"
 )
@@ -36,4 +38,19 @@ func main() {
 	go push()
 	go pop()
 	wg.Wait()
+	inAndOut()
+}
+
+/*
+	标准输入输出
+*/
+func inAndOut() {
+	in := bufio.NewScanner(os.Stdin)
+	for in.Scan() {
+		str := in.Text()
+		if str == "end" {
+			break
+		}
+		fmt.Println(str)
+	}
 }
