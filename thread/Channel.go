@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strconv"
 	"sync"
 	"time"
 )
@@ -14,13 +15,13 @@ var wg sync.WaitGroup
 
 func init() {
 	ch = make(chan int)
-	wg.Add(2)
+	wg.Add(4)
 }
 
 func pop() {
 	defer wg.Done()
-	for i := 0; i < 3; i++ {
-		fmt.Println(<-ch)
+	for i := 0; i < 1; i++ {
+		fmt.Println("pop " + strconv.Itoa(<-ch))
 		time.Sleep(500)
 	}
 }
@@ -28,7 +29,7 @@ func pop() {
 func push() {
 	defer wg.Done()
 	for i := 0; i < 3; i++ {
-		fmt.Println(i)
+		fmt.Println("push " + strconv.Itoa(i))
 		time.Sleep(500)
 		ch <- i
 	}
@@ -37,8 +38,10 @@ func push() {
 func main() {
 	go push()
 	go pop()
+	go pop()
+	go pop()
 	wg.Wait()
-	inAndOut()
+	//inAndOut()
 }
 
 /*
