@@ -1,26 +1,32 @@
 package main
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 type Phone interface {
-	call()
+	callNumber(target string) error
+	sendMsg(target string) (string, string)
 }
 
 type Nokia struct {
-	id int
+	number  string
+	version string
 }
 
-func (nokia *Nokia) func1() {
-	fmt.Println("i'm fuc1")
+func (p *Nokia) callNumber(target string) error {
+	fmt.Printf("即将打电话给 %s\n", target)
+	return errors.New("电话欠费")
 }
 
-func (nokia *Nokia) call() {
-	nokia.func1()
-	fmt.Println("i'm a Nokia")
+func (p *Nokia) sendMsg(target string) (string, string) {
+	fmt.Printf("即将发送短信给 %s\n", target)
+	return "发送成功", target
 }
 
 func main() {
-	fmt.Println("====接口实现====")
-	var phone = Phone(new(Nokia))
-	phone.call()
+	var phone Phone = &Nokia{"001", "001"}
+	err := phone.callNumber("002")
+	fmt.Println(err)
 }
