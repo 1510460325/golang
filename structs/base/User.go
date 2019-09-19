@@ -21,4 +21,23 @@ func main() {
 	fmt.Println(u)
 	test(&u)
 	fmt.Println(u)
+	change()
+}
+
+func change() {
+	data := []int{1, 3, 2, 4, 2, 1}
+	ans := -1
+	for i := 0; i < len(data); i++ {
+		for data[i] != i {
+			if data[data[i]] == data[i] {
+				ans = data[i]
+				break
+			}
+			j := data[i]
+			a := data[i]
+			data[i] = data[j]
+			data[j] = a
+		}
+	}
+	fmt.Println(ans)
 }
