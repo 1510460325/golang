@@ -15,7 +15,19 @@ func do(op Op, a int, b int) {
 func add(a, b int) int {
 	return a + b
 }
+
+func test() func() {
+	a := 12
+	f := func() {
+		a++
+		fmt.Println(a)
+	}
+	return f
+}
 func main() {
-	fmt.Printf("%T\n", add)
-	do(add, 10, 10)
+	//fmt.Printf("%T\n", add)
+	//do(add, 10, 10)
+	f := test()
+	f()
+	f()
 }
