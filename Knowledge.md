@@ -30,3 +30,25 @@ func main() {
 }
 ~~~
 对象是附有行为的数据，闭包是附有数据的行为
+## 容器
+### slice
+* 切片
+
+本质上是一个arr的视图，底层由arr实现
+![slice](./imgs/slice.png)
+len: slice的截取长度，用下标访问的时候不能超过len  
+cap: slice的头指针到底层arr的len位置  
+截取极限为底层arr的len位置
+~~~
+arr := [...]int{0, 1, 2, 3, 4, 5, 6}
+fmt.Println("len is : ", len(arr[2:5])) // 3
+fmt.Println("cap is : ", cap(arr[2:5])) // 5
+fmt.Println("len is : ", len(arr[3:5])) // 2
+fmt.Println("cap is : ", cap(arr[3:5])) // 4
+~~~
+* append(添加元素)
+
+在append过程中如果超过了cap的限制，会重新分配一个arr来生成slice
+* copy
+
+只会复制交集部分数据，不会延伸到其他位置
