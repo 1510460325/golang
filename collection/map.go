@@ -12,4 +12,5 @@ func main() {
 	for key, val := range m {
 		fmt.Printf("key is %d => %d\n", key, val)
 	}
+	delete(m, 1)
 }
