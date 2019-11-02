@@ -52,3 +52,8 @@ fmt.Println("cap is : ", cap(arr[3:5])) // 4
 * copy
 
 只会复制交集部分数据，不会延伸到其他位置
+## type 定义与别名
+### type MyInt = int
+表示定义一个int的别名，在编译之后将不会存在MyInt
+### type MyInt int
+表示定义一个类型MyInt，底层为基本类型int,也可以自己强化int
