@@ -57,3 +57,32 @@ fmt.Println("cap is : ", cap(arr[3:5])) // 4
 表示定义一个int的别名，在编译之后将不会存在MyInt
 ### type MyInt int
 表示定义一个类型MyInt，底层为基本类型int,也可以自己强化int
+## 接口
+### 值接受者和指针接受者的区别
+~~~
+type Node struct {
+	Val  string
+	Next *Node
+}
+
+func (node *Node) String() string {
+	return fmt.Sprintf("node is %s", node.Val)
+}
+
+func main() {
+	var node fmt.Stringer
+	node = new(Node)
+	node = Node{} // 报错；以指针接收的方式实现接口只能用指针类型
+    node = &Node{} // 没问题.
+}
+~~~
+* 以指针接收实现
+    * var name 接口 = 指针类型 ✔  
+    * var name 接口 = 值类型 ✖  
+* 以值接收实现
+    * var name 接口 = 指针类型 ✔
+    * var name 接口 = 值类型 ✖
+### 取得接口的真实类型
+1. switch node.(type)
+2. obj, ok = node.(Node) // 强转
+3. fmt.printf("%T", node) // 输出
