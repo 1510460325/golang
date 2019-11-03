@@ -9,6 +9,10 @@ func except() {
 	fmt.Println(recover())
 }
 
+func add(i, j int) int {
+	return i + j
+}
+
 func main() {
 	defer func() {
 		e := recover()
