@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 func except() {
 	fmt.Println(recover())
@@ -8,7 +11,23 @@ func except() {
 
 func main() {
 	defer func() {
-		fmt.Println(recover())
+		e := recover()
+		if e == nil {
+			return
+		}
+		fmt.Printf("recovered this error %v\n", e)
 	}()
-	panic(12)
+	defer func() {
+		e := recover()
+		if e == nil {
+			return
+		}
+		if err, ok := e.(error); ok {
+			fmt.Printf("recovered this error %v\n", err)
+		} else {
+			fmt.Println("i don't know how to do this panic, throw out!")
+			panic("second panic")
+		}
+	}()
+	panic(errors.New("12"))
 }
